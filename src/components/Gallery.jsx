@@ -2,7 +2,7 @@ import React from 'react';
 import Photo from './Photo';
 import NotFound from './NotFound';
 
-const PhotoContainer = props => {
+const Gallery = props => {
   const results = props.data;
 
   let photos;
@@ -29,4 +29,4 @@ const PhotoContainer = props => {
   );
 };
 
-export default PhotoContainer;
+export default Gallery;

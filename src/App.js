@@ -4,14 +4,14 @@ import apiKey from './components/config';
 import axios from 'axios';
 import SearchForm from './components/SearchForm';
 import Nav from './components/Nav';
-import PhotoContainer from './components/PhotoContainer';
+import Gallery from './components/Gallery';
 import NotFound from './components/NotFound';
 import FourOFour from './components/FourOFour';
 
 class App extends Component {
   state = {
     sunrise: [],
-    aurora: [],
+    butterflies: [],
     sunset: [],
     search: [],
     loading: true,
@@ -20,7 +20,7 @@ class App extends Component {
   // Request and load default topics when app first loads
   componentDidMount() {
     this.performSearch('sunrise');
-    this.performSearch('aurora');
+    this.performSearch('Monarch Butterflies');
     this.performSearch('sunset');
   }
 
@@ -35,9 +35,9 @@ class App extends Component {
             sunrise: response.data.photos.photo,
             loading: false,
           });
-        } else if (query === 'aurora') {
+        } else if (query === 'Monarch Butterflies') {
           this.setState({
-            aurora: response.data.photos.photo,
+            butterflies: response.data.photos.photo,
             loading: false,
           });
         } else if (query === 'sunset') {
@@ -46,10 +46,8 @@ class App extends Component {
             loading: false,
           });
         } else {
-          let search = this.state.search;
-          search[query] = response.data.photos.photo;
           this.setState({
-            search: search,
+            search: response.data.photos.photo,
             loading: false,
           });
         }
@@ -61,8 +59,8 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="container">
+      <div className="container">
+        <Router>
           <SearchForm onSearch={this.performSearch} />
           <Nav />
           <Switch>
@@ -73,7 +71,7 @@ class App extends Component {
                 this.state.loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <PhotoContainer data={this.state.sunrise} />
+                  <Gallery data={this.state.sunrise} />
                 )
               }
             />
@@ -83,17 +81,17 @@ class App extends Component {
                 this.state.loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <PhotoContainer data={this.state.sunrise} />
+                  <Gallery data={this.state.sunrise} />
                 )
               }
             />
             <Route
-              path="/aurora"
+              path="/butterflies"
               render={() =>
                 this.state.loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <PhotoContainer data={this.state.aurora} />
+                  <Gallery data={this.state.butterflies} />
                 )
               }
             />
@@ -103,27 +101,25 @@ class App extends Component {
                 this.state.loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <PhotoContainer data={this.state.sunset} />
+                  <Gallery data={this.state.sunset} />
                 )
               }
             />
             <Route
-              path="/search/:subject"
-              render={({ match }) =>
+              path="/search/:id"
+              render={() =>
                 this.state.loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <PhotoContainer
-                    data={this.state.search[match.params.subject]}
-                  />
+                  <Gallery data={this.state.search} />
                 )
               }
             />
             <Route component={NotFound} />
             <Route component={FourOFour} />
           </Switch>
-        </div>
-      </Router>
+        </Router>
+      </div>
     );
   }
 }
