@@ -1,3 +1,5 @@
+For this project, React and the Flickr API were used to build a photo gallery app.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

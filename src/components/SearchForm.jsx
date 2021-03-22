@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
-  // On Form Submit
   handleSubmit = (e) => {
     e.preventDefault();
     let subject = this.query.value;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import apiKey from './components/config';
 import axios from 'axios';
+// COMPONENT IMPORTS
 import SearchForm from './components/SearchForm';
 import Nav from './components/Nav';
 import Gallery from './components/Gallery';
@@ -18,14 +19,14 @@ class App extends Component {
     loading: true,
   };
 
-  // Request and load default topics when app first loads
+  // Request three default topics when app first loads
   componentDidMount() {
     this.performSearch('sunrise');
     this.performSearch('butterflies');
     this.performSearch('sunset');
   }
 
-  // Search Performs API Request
+  // Search Performs API Request and Update State
   performSearch = (query) => {
     axios
       .get(
