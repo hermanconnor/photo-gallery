@@ -79,7 +79,7 @@ class App extends Component {
                 this.state.loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <Gallery data={this.state.sunrise} query={this.state.query} />
+                  <Gallery data={this.state.sunrise} query="sunrise" />
                 )
               }
             />
