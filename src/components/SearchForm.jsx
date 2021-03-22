@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
-  // state = {
-  //   searchText: '',
-  // };
-
-  // onSearchChange = e => {
-  //   this.setState({ searchText: e.target.value });
-  // };
-
-  handleSubmit = e => {
+  // On Form Submit
+  handleSubmit = (e) => {
     e.preventDefault();
     let subject = this.query.value;
+
+    // Pass Search To  performSearch in App.js
     this.props.onSearch(subject);
+
+    // Push Search On To History Object
     let path = `/search/${subject}`;
     this.props.history.push(path);
+
+    // Clear Search Input
     e.currentTarget.reset();
   };
 
@@ -23,11 +22,10 @@ class SearchForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} className="search-form">
         <input
-          // onChange={this.onSearchChange}
           type="search"
           name="search"
           placeholder="Search"
-          ref={input => (this.query = input)}
+          ref={(input) => (this.query = input)}
           required
         />
         <button type="submit" className="search-button">

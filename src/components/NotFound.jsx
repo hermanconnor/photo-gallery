@@ -1,5 +1,6 @@
 import React from 'react';
 
+// No Images Found Component
 const NotFound = () => {
   return (
     <li className="not-found">

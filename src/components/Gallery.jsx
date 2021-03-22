@@ -2,13 +2,14 @@ import React from 'react';
 import Photo from './Photo';
 import NotFound from './NotFound';
 
-const Gallery = props => {
+const Gallery = (props) => {
   const results = props.data;
 
   let photos;
 
+  // If Photos, Iterate Array & Pass Props To Photo Component
   if (results.length > 0) {
-    photos = results.map(photo => (
+    photos = results.map((photo) => (
       <Photo
         title={photo.title}
         id={photo.id}
@@ -18,6 +19,7 @@ const Gallery = props => {
       />
     ));
   } else {
+    // If No Photos, Display Not Found Component
     photos = <NotFound />;
   }
 
