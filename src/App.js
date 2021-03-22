@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import apiKey from './components/config';
-import axios from 'axios';
-import SearchForm from './components/SearchForm';
-import Nav from './components/Nav';
-import Gallery from './components/Gallery';
-import NotFound from './components/NotFound';
-import FourOFour from './components/FourOFour';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import apiKey from "./components/config";
+import axios from "axios";
+import SearchForm from "./components/SearchForm";
+import Nav from "./components/Nav";
+import Gallery from "./components/Gallery";
+import NotFound from "./components/NotFound";
+import FourOFour from "./components/FourOFour";
 
 class App extends Component {
   state = {
@@ -19,28 +19,28 @@ class App extends Component {
 
   // Request and load default topics when app first loads
   componentDidMount() {
-    this.performSearch('sunrise');
-    this.performSearch('Monarch Butterflies');
-    this.performSearch('sunset');
+    this.performSearch("sunrise");
+    this.performSearch("Monarch Butterflies");
+    this.performSearch("sunset");
   }
 
-  performSearch = (query = 'sunrise') => {
+  performSearch = (query = "sunrise") => {
     axios
       .get(
         `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
       )
-      .then(response => {
-        if (query === 'sunrise') {
+      .then((response) => {
+        if (query === "sunrise") {
           this.setState({
             sunrise: response.data.photos.photo,
             loading: false,
           });
-        } else if (query === 'Monarch Butterflies') {
+        } else if (query === "Monarch Butterflies") {
           this.setState({
             butterflies: response.data.photos.photo,
             loading: false,
           });
-        } else if (query === 'sunset') {
+        } else if (query === "sunset") {
           this.setState({
             sunset: response.data.photos.photo,
             loading: false,
@@ -52,8 +52,8 @@ class App extends Component {
           });
         }
       })
-      .catch(error => {
-        console.log('Error: ', error);
+      .catch((error) => {
+        console.log("Error: ", error);
       });
   };
 
@@ -123,5 +123,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
