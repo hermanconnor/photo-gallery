@@ -3,6 +3,7 @@ import Footer from './Footer';
 import type { ImagesResult } from '@/schemas';
 import fetchImages from '@/lib/fetchImages';
 import addBlurredDataUrls from '@/lib/getBase64';
+import { getPrevPage, getNextPage } from '@/lib/pagination';
 
 interface Props {
   topic?: string | undefined;
@@ -29,8 +30,6 @@ const Gallery = async ({ topic = 'curated', page }: Props) => {
   }
 
   const photosWithBlur = await addBlurredDataUrls(images);
-  const prevPage = getPrevPage(images);
-  const nextPage = getNextPage(images);
 
   return (
     <>
@@ -40,12 +39,7 @@ const Gallery = async ({ topic = 'curated', page }: Props) => {
         ))}
       </section>
 
-      <Footer
-        topic={topic}
-        page={page}
-        prevPage={prevPage}
-        nextPage={nextPage}
-      />
+      {/* TODO: FOOTER GOES HERE */}
     </>
   );
 };
