@@ -30,6 +30,8 @@ const Gallery = async ({ topic = 'curated', page }: Props) => {
   }
 
   const photosWithBlur = await addBlurredDataUrls(images);
+  const prevPage = getPrevPage(images);
+  const nextPage = getNextPage(images);
 
   return (
     <>
@@ -39,7 +41,12 @@ const Gallery = async ({ topic = 'curated', page }: Props) => {
         ))}
       </section>
 
-      {/* TODO: FOOTER GOES HERE */}
+      <Footer
+        topic={topic}
+        page={page}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
     </>
   );
 };
