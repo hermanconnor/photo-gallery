@@ -1,5 +1,5 @@
-import { Metadata } from 'next';
-import Gallery from '@/components/Gallery';
+import { Metadata } from "next";
+import Gallery from "@/components/Gallery";
 
 interface Props {
   params: {
@@ -10,8 +10,8 @@ interface Props {
 export async function generateMetadata({
   params: { myParams },
 }: Props): Promise<Metadata> {
-  const topic = myParams?.[0] ?? 'curated';
-  const page = myParams?.[1] ?? '1';
+  const topic = myParams?.[0] ?? "curated";
+  const page = myParams?.[1] ?? "1";
 
   return {
     title: `Results for ${topic} - Page ${page}`,
@@ -19,8 +19,8 @@ export async function generateMetadata({
 }
 
 const SearchPage = ({ params: { myParams } }: Props) => {
-  const topic = myParams?.[0] ?? 'curated';
-  const page = myParams?.[1] ?? '1';
+  const topic = myParams?.[0] ?? "curated";
+  const page = myParams?.[1] ?? "1";
 
   return <Gallery topic={topic} page={page} />;
 };

@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
-import type { Photo } from '@/schemas';
+import type { Photo } from "@/schemas";
 
 interface Props {
   photo: Photo;
@@ -9,27 +9,27 @@ interface Props {
 
 const PhotoContainer = ({ photo }: Props) => {
   return (
-    <div className='w-full mb-6 rounded-xl overflow-hidden break-inside-avoid group shadow relative'>
-      <Link href={photo.url} target='_blank' rel='noreferrer noopener'>
+    <div className="group relative mb-6 w-full break-inside-avoid overflow-hidden rounded-xl shadow">
+      <Link href={photo.url} target="_blank" rel="noreferrer noopener">
         <Image
           src={photo.src.large}
           alt={photo.alt}
           height={photo.height}
           width={photo.width}
-          placeholder='blur'
+          placeholder="blur"
           blurDataURL={photo.blurredDataUrl}
-          className='max-w-full group-hover:opacity-75 transition-opacity duration-300'
+          className="max-w-full transition-opacity duration-300 group-hover:opacity-75"
         />
       </Link>
-      <div className='absolute bottom-0 left-0 right-0 px-4 py-3 text-white bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300'>
-        <div className='flex justify-between w-full'>
+      <div className="absolute bottom-0 left-0 right-0 bg-black/40 px-4 py-3 text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+        <div className="flex w-full justify-between">
           <p>
             <Link
               href={photo.photographer_url}
-              target='_blank'
-              rel='noreferrer noopener'
+              target="_blank"
+              rel="noreferrer noopener"
             >
-              <span className='block text-sm'>Photographer</span>
+              <span className="block text-sm">Photographer</span>
               {photo.photographer}
             </Link>
           </p>
